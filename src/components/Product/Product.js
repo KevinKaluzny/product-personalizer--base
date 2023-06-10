@@ -7,6 +7,10 @@ const Product = props => {
   const [currentColor, setCurrentColor] = useState(props.colors[0]);
   const [currentSize, setCurrentSize] = useState(props.sizes[0]);
 
+  function getPrice() {
+    return props.basePrice + currentSize.additionalPrice;
+  }
+
   return (
     <article className={styles.product}>
       <div className={styles.imageContainer}>
@@ -18,16 +22,16 @@ const Product = props => {
       <div>
         <header>
           <h2 className={styles.name}>Kodilla shirt</h2>
-          <span className={styles.price}>Price: { props.basePrice }$</span>
+          <span className={styles.price}>Price: { getPrice() }$</span>
         </header>
         <form>
           <div className={styles.sizes}>
             <h3 className={styles.optionLabel}>Sizes</h3>
             <ul className={styles.choices}>
-              <li><button type="button" className={clsx(currentSize === props.sizes[0].name && styles.active)} onClick={() => setCurrentSize(props.sizes[0].name)}>{ props.sizes[0].name }</button></li>
-              <li><button type="button" className={clsx(currentSize === props.sizes[1].name && styles.active)} onClick={() => setCurrentSize(props.sizes[1].name)}>{ props.sizes[1].name }</button></li>
-              <li><button type="button" className={clsx(currentSize === props.sizes[2].name && styles.active)} onClick={() => setCurrentSize(props.sizes[2].name)}>{ props.sizes[2].name }</button></li>
-              <li><button type="button" className={clsx(currentSize === props.sizes[3].name && styles.active)} onClick={() => setCurrentSize(props.sizes[3].name)}>{ props.sizes[3].name }</button></li>
+              <li><button type="button" className={clsx(currentSize.name === props.sizes[0].name && styles.active)} onClick={() => setCurrentSize(props.sizes[0])}>{ props.sizes[0].name }</button></li>
+              <li><button type="button" className={clsx(currentSize.name === props.sizes[1].name && styles.active)} onClick={() => setCurrentSize(props.sizes[1])}>{ props.sizes[1].name }</button></li>
+              <li><button type="button" className={clsx(currentSize.name === props.sizes[2].name && styles.active)} onClick={() => setCurrentSize(props.sizes[2])}>{ props.sizes[2].name }</button></li>
+              <li><button type="button" className={clsx(currentSize.name === props.sizes[3].name && styles.active)} onClick={() => setCurrentSize(props.sizes[3])}>{ props.sizes[3].name }</button></li>
             </ul>
           </div>
           <div className={styles.colors}>
