@@ -1,7 +1,7 @@
 import styles from './Product.module.scss';
 import clsx from 'clsx';
 import Button from '../Button/Button';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const Product = props => {
   const [currentColor, setCurrentColor] = useState(props.colors[0]);
@@ -9,6 +9,16 @@ const Product = props => {
 
   function getPrice() {
     return props.basePrice + currentSize.additionalPrice;
+  }
+
+  function handleClick(event) {
+    event.preventDefault();
+    console.log('Summary');
+    console.log('===============');
+    console.log('Name:', props.name);
+    console.log('Price:', props.basePrice + currentSize.additionalPrice);
+    console.log('Size:', currentSize.name);
+    console.log('Color:', currentColor);
   }
 
   return (
@@ -42,7 +52,7 @@ const Product = props => {
               <li><button type="button" className={clsx(props.colors[2] === 'green' ? styles.colorGreen : styles.colorRed, currentColor === props.colors[2] && styles.active)} onClick={() => setCurrentColor(props.colors[2])} /></li>
             </ul>
           </div>
-          <Button className={styles.button}>
+          <Button className={styles.button} action={ event => handleClick(event) }>
             <span className="fa fa-shopping-cart" />
           </Button>
         </form>
