@@ -1,15 +1,14 @@
 import styles from './Product.module.scss';
 import ProductForm from '../ProductForm/ProductForm';
 import ProductImage from '../ProductImage/ProductImage.js';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 
 const Product = props => {
   const [currentColor, setCurrentColor] = useState(props.colors[0]);
   const [currentSize, setCurrentSize] = useState(props.sizes[0]);
-
-  function getPrice() {
+  const price  = useMemo(() => {
     return props.basePrice + currentSize.additionalPrice;
-  }
+  }, [currentSize]);
 
   function handleClick(event) {
     event.preventDefault();
@@ -26,7 +25,7 @@ const Product = props => {
       <ProductImage
         src={`${process.env.PUBLIC_URL}/images/products/shirt-${props.name}--${currentColor}.jpg`}
         alt={props.title} />
-      <ProductForm price={getPrice()} sizes={props.sizes} currentSize={currentSize} setCurrentSize={setCurrentSize} colors={props.colors} currentColor={currentColor} setCurrentColor={setCurrentColor} action={handleClick} />
+      <ProductForm price={price} sizes={props.sizes} currentSize={currentSize} setCurrentSize={setCurrentSize} colors={props.colors} currentColor={currentColor} setCurrentColor={setCurrentColor} action={handleClick} />
     </article>
   )
 };
