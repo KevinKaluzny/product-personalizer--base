@@ -24,18 +24,18 @@ const Product = props => {
           <div className={styles.sizes}>
             <h3 className={styles.optionLabel}>Sizes</h3>
             <ul className={styles.choices}>
-              <li><button type="button" className={styles.active}>{ props.sizes[0].name }</button></li>
-              <li><button type="button">{ props.sizes[1].name }</button></li>
-              <li><button type="button">{ props.sizes[2].name }</button></li>
-              <li><button type="button">{ props.sizes[3].name }</button></li>
+              <li><button type="button" className={clsx(currentSize === props.sizes[0].name && styles.active)} onClick={() => setCurrentSize(props.sizes[0].name)}>{ props.sizes[0].name }</button></li>
+              <li><button type="button" className={clsx(currentSize === props.sizes[1].name && styles.active)} onClick={() => setCurrentSize(props.sizes[1].name)}>{ props.sizes[1].name }</button></li>
+              <li><button type="button" className={clsx(currentSize === props.sizes[2].name && styles.active)} onClick={() => setCurrentSize(props.sizes[2].name)}>{ props.sizes[2].name }</button></li>
+              <li><button type="button" className={clsx(currentSize === props.sizes[3].name && styles.active)} onClick={() => setCurrentSize(props.sizes[3].name)}>{ props.sizes[3].name }</button></li>
             </ul>
           </div>
           <div className={styles.colors}>
             <h3 className={styles.optionLabel}>Colors</h3>
             <ul className={styles.choices}>
-              <li><button type="button" className={clsx(props.colors[0] === 'blue' ? styles.colorBlue : styles.colorBlack, currentColor === props.colors[0] && styles.active)} /></li>
-              <li><button type="button" className={clsx(props.colors[1] === 'red' ? styles.colorRed : styles.colorRed, currentColor === props.colors[1] && styles.active)} /></li>
-              <li><button type="button" className={clsx(props.colors[2] === 'green' ? styles.colorGreen : styles.colorWhite, currentColor === props.colors[2] && styles.active)} /></li>
+              <li><button type="button" className={clsx(props.colors[0] === 'blue' ? styles.colorBlue : styles.colorWhite, currentColor === props.colors[0] && styles.active)} onClick={() => setCurrentColor(props.colors[0])} /></li>
+              <li><button type="button" className={clsx(props.colors[1] === 'red' ? styles.colorRed : styles.colorBlack, currentColor === props.colors[1] && styles.active)} onClick={() => setCurrentColor(props.colors[1])} /></li>
+              <li><button type="button" className={clsx(props.colors[2] === 'green' ? styles.colorGreen : styles.colorRed, currentColor === props.colors[2] && styles.active)} onClick={() => setCurrentColor(props.colors[2])} /></li>
             </ul>
           </div>
           <Button className={styles.button}>
