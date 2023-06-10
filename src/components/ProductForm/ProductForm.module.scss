@@ -1,0 +1,25 @@
+@use 'sass:math';
+@import '../../styles/settings.scss';
+
+.name {
+    margin: $base-size 0;
+    font-size: $base-size * 3;
+}
+
+.price {
+    font-size: $base-size * 1.5;
+}
+
+.sizes .choices button:hover {
+    background: rgb(47, 53, 66);
+}
+
+.button {
+    position: absolute;
+    top: -$base-size * 2;
+    right: -$base-size * 2;
+    font-size: $base-size * 2;
+    border-radius: 100%;
+    width: $base-size * 5;
+    height: $base-size * 5;
+}
